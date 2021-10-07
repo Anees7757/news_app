@@ -1,0 +1,132 @@
+// ignore_for_file: prefer_const_constructors, prefer_final_fields, unused_field, await_only_futures
+
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../main.dart';
+
+class Edit extends StatefulWidget {
+  const Edit({Key? key}) : super(key: key);
+
+  @override
+  _EditState createState() => _EditState();
+}
+
+class _EditState extends State<Edit> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  File? _image;
+  Future getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image as File?;
+      final userId = auth.currentUser!.uid;
+      db.collection("users").doc(userId).set({"image": (context) => _image});
+    });
+  }
+
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _pwdController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
+
+  txtField(IconData _icon, String _hintTxt, int _maxlines,
+      TextEditingController _controller) {
+    return TextField(
+      controller: _controller,
+      maxLines: _maxlines,
+      decoration: InputDecoration(
+        focusColor: primaryColor,
+        hoverColor: primaryColor,
+        border: OutlineInputBorder(),
+        prefixIcon: Icon(_icon),
+        hintText: _hintTxt,
+      ),
+    );
+  }
+
+  Future update() async {
+    final String name = _nameController.text;
+    final String pwd = _pwdController.text;
+    final String phone = _phoneController.text;
+    final String address = _addressController.text;
+
+    final userId = auth.currentUser!.uid;
+
+    if (name.isNotEmpty) {
+      await db.collection("users").doc(userId).update({"name": name});
+    }
+    if (pwd.isNotEmpty) {
+      await auth.currentUser!.updatePassword(pwd);
+    }
+    if (phone.isNotEmpty) {
+      await db.collection("users").doc(userId).update({"phone": phone});
+    }
+    if (address.isNotEmpty) {
+      await db.collection("users").doc(userId).update({"address": address});
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Edit Profile"),
+        backgroundColor: primaryColor,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(30),
+          child: Column(
+            children: [
+              txtField(CupertinoIcons.person, 'Full Name', 1, _nameController),
+              SizedBox(
+                height: 20,
+              ),
+              txtField(CupertinoIcons.lock, 'Password', 1, _pwdController),
+              SizedBox(
+                height: 20,
+              ),
+              txtField(
+                  CupertinoIcons.phone, 'Phone Number', 1, _phoneController),
+              SizedBox(
+                height: 20,
+              ),
+              txtField(CupertinoIcons.map, 'Address', 5, _addressController),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: primaryColor,
+                ),
+                onPressed: () {
+                  setState(() {
+                    update();
+                    final snackBar = SnackBar(content: Text('Profile Updated'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.pop(context);
+                    _nameController.clear();
+                    _pwdController.clear();
+                    _phoneController.clear();
+                    _addressController.clear();
+                  });
+                },
+                child: Text("Update"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
