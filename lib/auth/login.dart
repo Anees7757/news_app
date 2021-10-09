@@ -49,11 +49,6 @@ class _LoginState extends State<Login> {
     try {
       final UserCredential user = await auth.signInWithEmailAndPassword(
           email: email, password: password);
-      final DocumentSnapshot snapshot =
-          await db.collection("users").doc(user.user!.uid).get();
-
-      // ignore: unused_local_variable
-      final Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
 
       Navigator.push(
         context,

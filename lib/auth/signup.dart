@@ -68,7 +68,7 @@ class _SignupState extends State<Signup> {
     final String address = addressController.text;
 
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-        .ref('/${auth.currentUser!.uid}.jpeg');
+        .ref('/${DateTime.now().toString()}.jpeg');
 
     try {
       final UserCredential result = await auth.createUserWithEmailAndPassword(
@@ -169,7 +169,7 @@ class _SignupState extends State<Signup> {
                 TextFormField(
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                      labelText: 'Phone*', hintText: "923XXXXXXXXX"),
+                      labelText: 'Phone*', hintText: "923XXXXXXXX"),
                   controller: phoneController,
                   validator: (value) {
                     if (value!.length < 10) {

@@ -55,7 +55,7 @@ class _ProfileState extends State<Profile> {
   Future updateImage() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-        .ref('/${auth.currentUser!.uid}.jpeg');
+        .ref('/${DateTime.now().toString()}.jpeg');
 
     File file = File(imagePath);
 
