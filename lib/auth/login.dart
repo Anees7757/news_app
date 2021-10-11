@@ -154,4 +154,6 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+  bool chk = false;
 }

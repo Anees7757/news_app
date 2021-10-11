@@ -7,10 +7,10 @@ class DataSharedPrefrences {
   static const _keyContent = 'content';
   static const _keyDes = 'des';
   static const _keySource = 'source';
-  static const _keyNewsTime = 'newstime';
+  static const _keyNewsTime = 'newsTime';
   static const _keyAuthor = 'author';
   static const _keyUrl = 'url';
-  static const _keyImgUrl = 'imgurl';
+  static const _keyImgUrl = 'imgUrl';
 
   static Future init() async =>
       _preferences = await SharedPreferences.getInstance();
@@ -34,8 +34,8 @@ class DataSharedPrefrences {
   static List<String> getSource() =>
       _preferences?.getStringList(_keySource) ?? [];
 
-  static Future setNewsTime(List<String> newstime) async =>
-      await _preferences?.setStringList(_keyNewsTime, newstime);
+  static Future setNewsTime(List<String> newsTime) async =>
+      await _preferences?.setStringList(_keyNewsTime, newsTime);
   static List<String> getNewsTime() =>
       _preferences?.getStringList(_keyNewsTime) ?? [];
 
@@ -48,7 +48,7 @@ class DataSharedPrefrences {
       await _preferences?.setStringList(_keyUrl, url);
   static List<String> getUrl() => _preferences?.getStringList(_keyUrl) ?? [];
 
-  static Future setImgUrl(List<String> imgurl) async =>
-      await _preferences?.setStringList(_keyImgUrl, imgurl);
+  static Future setImgUrl(List<String> imgUrl) async =>
+      await _preferences?.setStringList(_keyImgUrl, imgUrl);
   static List<String> getImgUrl() => _preferences?.getStringList(_keyUrl) ?? [];
 }

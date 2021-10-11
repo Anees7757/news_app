@@ -188,7 +188,7 @@ class _ProfileState extends State<Profile> {
                                       BoxShadow(
                                         offset: Offset(0, 0),
                                         blurRadius: 0,
-                                        spreadRadius: 5,
+                                        spreadRadius: 2,
                                         color: Colors.black,
                                       ),
                                     ],
@@ -196,11 +196,12 @@ class _ProfileState extends State<Profile> {
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black,
                                     radius: 60,
-                                    child: ClipOval(
+                                   child: ClipOval(
                                       child: Image.network(
                                         data['url'] != null
                                         ? "${data['url']}"
                                         : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+                                        fit: BoxFit.cover,
                                         loadingBuilder: (BuildContext context,
                                             Widget child,
                                             ImageChunkEvent? loadingProgress) {
@@ -221,7 +222,8 @@ class _ProfileState extends State<Profile> {
                                           );
                                         },
                                       ),
-                                    ),                               ),
+                                    ),
+                                  ),
                                 ),
                                 GestureDetector(
                                   onTap: () {

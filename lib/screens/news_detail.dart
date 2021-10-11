@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_final_fields, unnecessary_string_interpolations, unnecessary_null_comparison, unrelated_type_equality_checks
 
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +90,7 @@ class _DetailState extends State<Detail> {
           children: [
             Container(
               width: double.infinity,
+              height: 200,
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -225,13 +228,28 @@ class _DetailState extends State<Detail> {
                     await DataSharedPrefrences.setDes(imgUrllst);
                   }),
             ),
+            IntrinsicHeight(
+              child: Stack(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(left: 12),
+                      child: VerticalDivider(
+                        thickness: 4,
+                        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+                      )),
+                  Container(
+                    margin: EdgeInsets.only(left: 32, right: 15),
+                    child: Text(widget.newsTitle,
+                        style:
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  ),
+                ],
+              ),
+            ),
             Container(
               margin: EdgeInsets.only(left: 15, right: 15),
               child: Column(
                 children: [
-                  Text(widget.newsTitle,
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                   Container(
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.all(10),
@@ -251,7 +269,7 @@ class _DetailState extends State<Detail> {
                           ))
                       : Text(''),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -270,20 +288,17 @@ class _DetailState extends State<Detail> {
                             ? "Read More >>"
                             : "<< Read Here >>",
                         style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           fontSize: 17,
-                          color: primaryColor,
+                         // color: primaryColor,
                         )),
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  SizedBox(
-                    width: 120,
-                    child: Divider(
-                      thickness: 3,
-                      color: primaryColor,
+                  Divider(
+                      thickness: 2,
                     ),
-                  ),
                   Container(
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.all(10),
@@ -291,10 +306,12 @@ class _DetailState extends State<Detail> {
                           ? Text("Author: ${widget.author}",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
+                                color: primaryColor
                               ))
                           : Text("Author: Unknown",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
+                                  color: primaryColor
                               ))),
                   SizedBox(
                     height: 10,

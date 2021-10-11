@@ -37,18 +37,20 @@ class _EditState extends State<Edit> {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
 
-  txtField(IconData _icon, String _hintTxt, int _maxlines,
+  txtField(IconData _icon, String _hintTxt, int maxLines, TextInputType inputType,
       TextEditingController _controller) {
     return TextField(
       controller: _controller,
-      maxLines: _maxlines,
+      maxLines: maxLines,
+      minLines: 1,
       decoration: InputDecoration(
         focusColor: primaryColor,
         hoverColor: primaryColor,
-        border: OutlineInputBorder(),
+       // border: OutlineInputBorder(),
         prefixIcon: Icon(_icon),
         hintText: _hintTxt,
       ),
+      keyboardType: inputType,
     );
   }
 
@@ -85,30 +87,29 @@ class _EditState extends State<Edit> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(30),
+          margin: EdgeInsets.all(20),
           child: Column(
             children: [
-              txtField(CupertinoIcons.person, 'Full Name', 1, _nameController),
+              txtField(CupertinoIcons.person, 'Full Name', 1, TextInputType.name, _nameController),
               SizedBox(
                 height: 20,
               ),
-              txtField(CupertinoIcons.lock, 'Password', 1, _pwdController),
+              txtField(CupertinoIcons.lock, 'Password', 1, TextInputType.visiblePassword, _pwdController),
               SizedBox(
                 height: 20,
               ),
               txtField(
-                  CupertinoIcons.phone, 'Phone Number', 1, _phoneController),
+                  CupertinoIcons.phone, 'Phone Number', 1, TextInputType.number, _phoneController),
               SizedBox(
                 height: 20,
               ),
-              txtField(CupertinoIcons.map, 'Address', 5, _addressController),
+              txtField(CupertinoIcons.map, 'Address', 5, TextInputType.none, _addressController),
               SizedBox(
-                height: 20,
+                height: 30,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
-                ),
+              RaisedButton(
+                color: primaryColor,
+                textColor: Colors.white,
                 onPressed: () {
                   setState(() {
                     update();

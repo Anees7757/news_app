@@ -138,7 +138,7 @@ class _SignupState extends State<Signup> {
                   height: 70,
                   width: 70,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: (imageFile != null)
@@ -146,7 +146,7 @@ class _SignupState extends State<Signup> {
                           child: Image.file(imageFile!, fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(50),
                         )
-                      : Icon(CupertinoIcons.person_fill),
+                      : Icon(CupertinoIcons.person, size: 35),
                 ),
                 TextButton(
                   onPressed: () {

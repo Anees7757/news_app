@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:news_app/main.dart';
-import 'package:news_app/screens/news_detail.dart';
 import 'package:news_app/screens/search.dart';
-import 'package:news_app/services/shared_prefrences.dart';
 import 'package:news_app/tab/all_stories.dart';
 import 'package:news_app/tab/headlines.dart';
 import 'package:news_app/tab/popular.dart';
@@ -22,19 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    titlelst = DataSharedPrefrences.getTitle();
-    contentlst = DataSharedPrefrences.getContent();
-    deslst = DataSharedPrefrences.getDes();
-    newsTimelst = DataSharedPrefrences.getNewsTime();
-    sourcelst = DataSharedPrefrences.getSource();
-    authorlst = DataSharedPrefrences.getAuthor();
-    urllst = DataSharedPrefrences.getUrl();
-    imgUrllst = DataSharedPrefrences.getImgUrl();
-  }
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

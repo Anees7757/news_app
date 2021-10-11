@@ -17,11 +17,10 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Colors.red[900],
-        ),
+        // appBar: AppBar(
+        //   title: Text(widget.title),
+        //   backgroundColor: Colors.red[900],
+        // ),
         body: SizedBox(
           height: double.infinity,
           width: double.infinity,
