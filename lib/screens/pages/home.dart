@@ -113,10 +113,6 @@ class _HomePageState extends State<HomePage> {
                 actions: [
                   IconButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Search()),
-                      // );
                       setState(() {
                         dialog();
                       });
@@ -138,7 +134,6 @@ class _HomePageState extends State<HomePage> {
                 ],
                 bottom: TabBar(
                   isScrollable: true,
-                  indicatorColor: Colors.white,
                   indicatorWeight: 4,
                   tabs: <Widget>[
                     Tab(icon: Icon(CupertinoIcons.news), text: "All News"),

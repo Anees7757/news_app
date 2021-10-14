@@ -26,7 +26,30 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.red,
+        brightness: Brightness.light,
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        shadowColor: Colors.grey,
+        bottomAppBarColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
+        cardColor: Colors.white,
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+        ),
+        indicatorColor: Colors.white
       ),
+      // darkTheme: ThemeData(
+      //   brightness: Brightness.dark,
+      //   primarySwatch: Colors.red,
+      //   iconTheme: IconThemeData(
+      //       color: Colors.black
+      //   ),
+      //   shadowColor: Colors.white,
+      //   cardColor: Colors.grey.shade800,
+      //   scaffoldBackgroundColor: Colors.black
+      // ),
+      themeMode: ThemeMode.system,
       home: Main(),
     );
   }

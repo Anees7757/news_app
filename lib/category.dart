@@ -21,7 +21,6 @@ class Category {
           _dataService.getArticle(num);
         };
       },
-      color: Colors.black,
       strokeWidth: 3,
       child: FutureBuilder(
           future: _dataService.getArticle(num),
@@ -45,7 +44,7 @@ class Category {
                               child: Column(
                                 children: [
                                   Card(
-                                    shadowColor: Colors.grey,
+                                    //shadowColor: Colors.grey,
                                     elevation: 5,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15.0),

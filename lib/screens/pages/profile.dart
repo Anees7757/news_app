@@ -79,7 +79,7 @@ class _ProfileState extends State<Profile> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.white,
+          //backgroundColor: Colors.white,
           elevation: 0.0,
           content: CircleAvatar(
             radius: 100,

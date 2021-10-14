@@ -60,7 +60,7 @@ class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+     // backgroundColor: Colors.white,
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
       ),
