@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/auth/signup.dart';
 import 'package:news_app/main.dart';
 import 'package:news_app/screens/web_view.dart';
+import 'package:news_app/services/data_service.dart';
 import 'package:news_app/services/shared_prefrences.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -184,23 +185,25 @@ class _DetailState extends State<Detail> {
                               onPressed: () async {
                                 setState(() {
                                   _icon = CupertinoIcons.heart_fill;
-                                    titlelst.add("${widget.newsTitle}");
-                                    contentlst.add("${widget.content}");
-                                    deslst.add("${widget.des}");
-                                    sourcelst.add("${widget.source}");
-                                    newsTimelst.add("${widget.newsTime}");
-                                    authorlst.add("${widget.author}");
-                                    urllst.add("${widget.link}");
-                                    imgUrllst.add("${widget.img}");
+                                  titlelst.add("${widget.newsTitle}");
+                                  contentlst.add("${widget.content}");
+                                  deslst.add("${widget.des}");
+                                  sourcelst.add("${widget.source}");
+                                  newsTimelst.add("${widget.newsTime}");
+                                  authorlst.add("${widget.author}");
+                                  urllst.add("${widget.link}");
+                                  imgUrllst.add("${widget.img}");
                                 });
                                 await DataSharedPrefrences.setTitle(titlelst);
-                                await DataSharedPrefrences.setContent(contentlst);
+                                await DataSharedPrefrences.setContent(
+                                    contentlst);
                                 await DataSharedPrefrences.setDes(deslst);
-                                await DataSharedPrefrences.setDes(sourcelst);
-                                await DataSharedPrefrences.setDes(newsTimelst);
-                                await DataSharedPrefrences.setDes(authorlst);
-                                await DataSharedPrefrences.setDes(urllst);
-                                await DataSharedPrefrences.setDes(imgUrllst);
+                                await DataSharedPrefrences.setSource(sourcelst);
+                                await DataSharedPrefrences.setNewsTime(
+                                    newsTimelst);
+                                await DataSharedPrefrences.setAuthor(authorlst);
+                                await DataSharedPrefrences.setUrl(urllst);
+                                await DataSharedPrefrences.setImgUrl(imgUrllst);
                               },
                             ),
                           );
@@ -231,17 +234,30 @@ class _DetailState extends State<Detail> {
             IntrinsicHeight(
               child: Stack(
                 children: [
+                  Align(
+                    alignment: (language == 'ar')
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: Container(
+                        margin: (language == 'ar')
+                            ? EdgeInsets.only(right: 12)
+                            : EdgeInsets.only(left: 12),
+                        child: VerticalDivider(
+                          thickness: 4,
+                          color: Colors.primaries[
+                              Random().nextInt(Colors.primaries.length)],
+                        )),
+                  ),
                   Container(
-                      margin: EdgeInsets.only(left: 12),
-                      child: VerticalDivider(
-                        thickness: 4,
-                        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-                      )),
-                  Container(
-                    margin: EdgeInsets.only(left: 32, right: 15),
+                    margin: (language == 'ar')
+                        ? EdgeInsets.only(left: 15, right: 32)
+                        : EdgeInsets.only(left: 32, right: 15),
                     child: Text(widget.newsTitle,
-                        style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                        textAlign: (language == 'ar')
+                            ? TextAlign.right
+                            : TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),
@@ -290,29 +306,27 @@ class _DetailState extends State<Detail> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17,
-                         // color: primaryColor,
+                          // color: primaryColor,
                         )),
                   ),
                   SizedBox(
                     height: 15,
                   ),
                   Divider(
-                      thickness: 2,
-                    ),
+                    thickness: 2,
+                  ),
                   Container(
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.all(10),
                       child: (widget.author != 'null')
                           ? Text("Author: ${widget.author}",
                               style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: primaryColor
-                              ))
+                                  fontWeight: FontWeight.w600,
+                                  color: primaryColor))
                           : Text("Author: Unknown",
                               style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                  color: primaryColor
-                              ))),
+                                  fontWeight: FontWeight.w600,
+                                  color: primaryColor))),
                   SizedBox(
                     height: 10,
                   ),

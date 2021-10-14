@@ -34,6 +34,7 @@ class _ProfileState extends State<Profile> {
 
   String imagePath = '';
   File? imageFile;
+
   Future getImage() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image =
@@ -196,11 +197,11 @@ class _ProfileState extends State<Profile> {
                                   child: CircleAvatar(
                                     backgroundColor: Colors.black,
                                     radius: 60,
-                                   child: ClipOval(
+                                    child: ClipOval(
                                       child: Image.network(
                                         data['url'] != null
-                                        ? "${data['url']}"
-                                        : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+                                            ? "${data['url']}"
+                                            : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
                                         fit: BoxFit.cover,
                                         loadingBuilder: (BuildContext context,
                                             Widget child,

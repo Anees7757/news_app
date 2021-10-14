@@ -6,28 +6,28 @@ import 'dart:convert';
 import 'package:news_app/models/data_model.dart';
 
 String? search;
+String? language = 'en';
 
 class DataService {
   final endPointUrl = "newsapi.org";
   final client = http.Client();
+
   Future<List<Article>> getArticle(int num) async {
     final queryParameters;
     String endpoint;
-    String apiKey = '50798d298b0b49348d19078255d13e84';
-    String lan = 'en';
+    String apiKey = '61f5a95919bf486fa7cb95066b72a0fc';
     if (num == 0) {
       queryParameters = {
-        'language': lan,
+        'language': language!,
         'sortBy': 'publishedAt',
         'apiKey': apiKey
       };
       endpoint = 'top-headlines';
-    }
-    else if (num == 1) {
+    } else if (num == 1) {
       queryParameters = {
         'q': 'top',
         'sortBy': 'publishedAt',
-        'language': lan,
+        'language': language!,
         'apiKey': apiKey
       };
       endpoint = 'everything';
@@ -35,13 +35,13 @@ class DataService {
       queryParameters = {
         'q': 'headlines',
         'sortBy': 'publishedAt',
-        'language': lan,
+        'language': language!,
         'apiKey': apiKey
       };
       endpoint = 'everything';
     } else if (num == 3) {
       queryParameters = {
-        'language': lan,
+        'language': language!,
         'q': 'popular',
         'sortBy': 'publishedAt',
         'apiKey': apiKey
@@ -49,7 +49,7 @@ class DataService {
       endpoint = 'everything';
     } else if (num == 4) {
       queryParameters = {
-        'language': lan,
+        'language': language!,
         'sortBy': 'publishedAt',
         'category': 'sports',
         'apiKey': apiKey
@@ -59,7 +59,7 @@ class DataService {
       queryParameters = {
         'q': search,
         'sortBy': 'publishedAt',
-        'language': lan,
+        'language': language!,
         'apiKey': apiKey
       };
       endpoint = 'everything';

@@ -21,7 +21,7 @@ class _SearchState extends State<Search> {
     'covid',
     'android',
     'entertainment',
-    'cryptoCurency',
+    'cryptoCurrency',
     'politics',
     'automotive',
     'sports',

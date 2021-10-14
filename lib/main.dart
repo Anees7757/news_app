@@ -40,7 +40,6 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 

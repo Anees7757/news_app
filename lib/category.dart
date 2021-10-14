@@ -11,6 +11,7 @@ import 'main.dart';
 import 'screens/news_detail.dart';
 
 DataService _dataService = DataService();
+
 class Category {
   stories(String title, int num) {
     return RefreshIndicator(
@@ -86,7 +87,10 @@ class Category {
                                                     BorderRadius.circular(30.0),
                                               ),
                                               child: Text(
-                                                timeago.format(DateTime.parse(articles[index].publishedAt.toString())),
+                                                timeago.format(DateTime.parse(
+                                                    articles[index]
+                                                        .publishedAt
+                                                        .toString())),
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                 ),
@@ -96,13 +100,16 @@ class Category {
                                         ),
                                         Container(
                                           margin: EdgeInsets.all(10),
-                                          alignment: Alignment.topLeft,
+                                          alignment: (language == 'ar')
+                                              ? Alignment.topRight
+                                              : Alignment.topLeft,
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
                                             // ignore: prefer_const_literals_to_create_immutables
                                             children: [
                                               Text("${articles[index].title}",
+                                                  textAlign: (language == 'ar')
+                                                      ? TextAlign.right
+                                                      : TextAlign.start,
                                                   maxLines: 2,
                                                   overflow: TextOverflow.clip,
                                                   style: TextStyle(
@@ -117,7 +124,9 @@ class Category {
                                                         null
                                                     ? "${articles[index].description}"
                                                     : "${articles[index].content}",
-                                                textAlign: TextAlign.start,
+                                                textAlign: (language == 'ar')
+                                                    ? TextAlign.right
+                                                    : TextAlign.start,
                                                 maxLines: 3,
                                                 overflow: TextOverflow.ellipsis,
                                               ),

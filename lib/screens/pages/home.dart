@@ -6,6 +6,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:news_app/main.dart';
 import 'package:news_app/screens/search.dart';
+import 'package:news_app/services/data_service.dart';
 import 'package:news_app/tab/all_stories.dart';
 import 'package:news_app/tab/headlines.dart';
 import 'package:news_app/tab/popular.dart';
@@ -20,6 +21,73 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  dialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: const Text('Choose Language'),
+            children: <Widget>[
+              Divider(),
+              SimpleDialogOption(
+                onPressed: () {
+                  setState(() {
+                    language = 'ar';
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('Arabic'),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  setState(() {
+                    language = 'nl';
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('Dutch'),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  setState(() {
+                    language = 'en';
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('English'),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  setState(() {
+                    language = 'he';
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('Hebrew'),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  setState(() {
+                    language = 'ru';
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('Russian'),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  setState(() {
+                    language = 'es';
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('Spanish'),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -45,6 +113,18 @@ class _HomePageState extends State<HomePage> {
                 actions: [
                   IconButton(
                     onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Search()),
+                      // );
+                      setState(() {
+                        dialog();
+                      });
+                    },
+                    icon: Icon(Icons.translate),
+                  ),
+                  IconButton(
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Search()),
@@ -61,9 +141,7 @@ class _HomePageState extends State<HomePage> {
                   indicatorColor: Colors.white,
                   indicatorWeight: 4,
                   tabs: <Widget>[
-                    Tab(
-                        icon: Icon(CupertinoIcons.news),
-                        text: "All News"),
+                    Tab(icon: Icon(CupertinoIcons.news), text: "All News"),
                     Tab(icon: Icon(Icons.trending_up), text: "Top Stories"),
                     Tab(icon: Icon(Icons.segment), text: "Headlines"),
                     Tab(

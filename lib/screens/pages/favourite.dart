@@ -23,14 +23,14 @@ class _FavouriteState extends State<Favourite> with TickerProviderStateMixin {
     super.initState();
 
     _controller = AnimationController(vsync: this);
-      titlelst = DataSharedPrefrences.getTitle();
-      contentlst = DataSharedPrefrences.getContent();
-      deslst = DataSharedPrefrences.getDes();
-      newsTimelst = DataSharedPrefrences.getNewsTime();
-      sourcelst = DataSharedPrefrences.getSource();
-      authorlst = DataSharedPrefrences.getAuthor();
-      urllst = DataSharedPrefrences.getUrl();
-      imgUrllst = DataSharedPrefrences.getImgUrl();
+    titlelst = DataSharedPrefrences.getTitle();
+    contentlst = DataSharedPrefrences.getContent();
+    deslst = DataSharedPrefrences.getDes();
+    newsTimelst = DataSharedPrefrences.getNewsTime();
+    sourcelst = DataSharedPrefrences.getSource();
+    authorlst = DataSharedPrefrences.getAuthor();
+    urllst = DataSharedPrefrences.getUrl();
+    imgUrllst = DataSharedPrefrences.getImgUrl();
   }
 
   @override
@@ -46,9 +46,7 @@ class _FavouriteState extends State<Favourite> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (titlelst.isEmpty)
-      ? Colors.white
-      : Colors.grey[200],
+      backgroundColor: (titlelst.isEmpty) ? Colors.white : Colors.grey[200],
       body: (titlelst.isEmpty)
           ? Center(
               child: Lottie.asset(
@@ -107,7 +105,7 @@ class _FavouriteState extends State<Favourite> with TickerProviderStateMixin {
                                                 return Center(
                                                   child: Icon(
                                                       Icons.broken_image,
-                                                      size: 90,
+                                                      size: 60,
                                                       color: Colors.grey),
                                                 );
                                               },
@@ -168,14 +166,14 @@ class _FavouriteState extends State<Favourite> with TickerProviderStateMixin {
                                     await DataSharedPrefrences.setContent(
                                         contentlst);
                                     await DataSharedPrefrences.setDes(deslst);
-                                    await DataSharedPrefrences.setDes(
+                                    await DataSharedPrefrences.setSource(
                                         sourcelst);
-                                    await DataSharedPrefrences.setDes(
+                                    await DataSharedPrefrences.setNewsTime(
                                         newsTimelst);
-                                    await DataSharedPrefrences.setDes(
+                                    await DataSharedPrefrences.setAuthor(
                                         authorlst);
-                                    await DataSharedPrefrences.setDes(urllst);
-                                    await DataSharedPrefrences.setDes(
+                                    await DataSharedPrefrences.setUrl(urllst);
+                                    await DataSharedPrefrences.setImgUrl(
                                         imgUrllst);
                                   },
                                 ),
