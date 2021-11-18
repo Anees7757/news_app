@@ -14,7 +14,6 @@ class _TopStoriesState extends State<TopStories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       body: Category().stories("Top Stories", 1),
     );
   }

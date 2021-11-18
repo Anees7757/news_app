@@ -15,7 +15,6 @@ class _PopularState extends State<Popular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       body: Category().stories("Popular News", 3),
     );
   }

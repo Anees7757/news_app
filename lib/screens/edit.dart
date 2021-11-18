@@ -79,7 +79,6 @@ class _EditState extends State<Edit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text("Edit Profile"),
@@ -109,7 +108,6 @@ class _EditState extends State<Edit> {
               ),
               RaisedButton(
                 color: primaryColor,
-                textColor: Colors.white,
                 onPressed: () {
                   setState(() {
                     update();

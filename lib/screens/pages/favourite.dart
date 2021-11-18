@@ -46,7 +46,6 @@ class _FavouriteState extends State<Favourite> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (titlelst.isEmpty) ? Colors.white : Colors.grey[200],
       body: (titlelst.isEmpty)
           ? Center(
               child: Lottie.asset(

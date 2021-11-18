@@ -58,5 +58,5 @@ class DataSharedPrefrences {
   static Future setImgUrl(List<String> imgUrl) async =>
       await _preferences?.setStringList(_keyImgUrl, imgUrl);
 
-  static List<String> getImgUrl() => _preferences?.getStringList(_keyUrl) ?? [];
+  static List<String> getImgUrl() => _preferences?.getStringList(_keyImgUrl) ?? [];
 }

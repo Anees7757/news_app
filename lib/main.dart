@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/route.dart';
+import 'package:news_app/screens/news_detail.dart';
 import 'package:news_app/screens/pages/favourite.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'screens/pages/home.dart';
@@ -32,23 +33,24 @@ class MyApp extends StatelessWidget {
         ),
         shadowColor: Colors.grey,
         bottomAppBarColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: (titlelst.isEmpty) ? Colors.white : Colors.grey[200],
         cardColor: Colors.white,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
         ),
         indicatorColor: Colors.white
       ),
-      // darkTheme: ThemeData(
-      //   brightness: Brightness.dark,
-      //   primarySwatch: Colors.red,
-      //   iconTheme: IconThemeData(
-      //       color: Colors.black
-      //   ),
-      //   shadowColor: Colors.white,
-      //   cardColor: Colors.grey.shade800,
-      //   scaffoldBackgroundColor: Colors.black
-      // ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+        iconTheme: IconThemeData(
+            color: Colors.grey
+        ),
+        shadowColor: Colors.white,
+        cardColor: Colors.grey.shade800,
+        scaffoldBackgroundColor: Colors.black,
+        indicatorColor: Colors.white,
+      ),
       themeMode: ThemeMode.system,
       home: Main(),
     );
@@ -110,9 +112,9 @@ class _MainState extends State<Main> {
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
-      decoration: NavBarDecoration(
-        colorBehindNavBar: Colors.white,
-      ),
+      // decoration: NavBarDecoration(
+      //   colorBehindNavBar: Colors.white,
+      // ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: ItemAnimationProperties(

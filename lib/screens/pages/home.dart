@@ -91,7 +91,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarIconBrightness: Brightness.light,
       statusBarColor: primaryColor,
     ));
     return Scaffold(
@@ -101,51 +100,65 @@ class _HomePageState extends State<HomePage> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                forceElevated: innerBoxIsScrolled,
-                floating: true,
-                snap: true,
-                pinned: true,
-                title: Text("News App",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    )),
-                backgroundColor: primaryColor,
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        dialog();
-                      });
-                    },
-                    icon: Icon(Icons.translate),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Search()),
-                      );
-                    },
-                    icon: Icon(CupertinoIcons.search),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                ],
-                bottom: TabBar(
-                  isScrollable: true,
-                  indicatorWeight: 4,
-                  tabs: <Widget>[
-                    Tab(icon: Icon(CupertinoIcons.news), text: "All News"),
-                    Tab(icon: Icon(Icons.trending_up), text: "Top Stories"),
-                    Tab(icon: Icon(Icons.segment), text: "Headlines"),
-                    Tab(
-                        icon: Icon(Icons.local_fire_department),
-                        text: "Popular"),
-                    Tab(icon: Icon(Icons.sports_cricket), text: "Sports"),
-                  ],
-                ),
-              ),
+                      forceElevated: innerBoxIsScrolled,
+                      floating: true,
+                      snap: true,
+                      pinned: true,
+                      title: Row(
+                        children: [
+                          Text("News",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: primaryColor,
+                                backgroundColor: Colors.white
+                              )),
+                          Text(" App",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                              )),
+                        ],
+                      ),
+                      backgroundColor: primaryColor,
+                      actions: [
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              dialog();
+                            });
+                          },
+                          icon: Icon(Icons.translate),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Search()),
+                            );
+                          },
+                          icon: Icon(CupertinoIcons.search),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                      ],
+                      bottom: TabBar(
+                        isScrollable: true,
+                        indicatorWeight: 4,
+                        tabs: <Widget>[
+                          Tab(
+                              icon: Icon(CupertinoIcons.news),
+                              text: "All News"),
+                          Tab(
+                              icon: Icon(Icons.trending_up),
+                              text: "Top Stories"),
+                          Tab(icon: Icon(Icons.segment), text: "Headlines"),
+                          Tab(
+                              icon: Icon(Icons.local_fire_department),
+                              text: "Popular"),
+                          Tab(icon: Icon(Icons.sports_cricket), text: "Sports"),
+                        ],
+                      ),
+                    ),
             ];
           },
           body: MediaQuery.removePadding(

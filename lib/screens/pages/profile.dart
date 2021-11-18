@@ -87,7 +87,6 @@ class _ProfileState extends State<Profile> {
           ),
           actions: [
             Container(
-              color: Colors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -149,7 +148,6 @@ class _ProfileState extends State<Profile> {
             onWillPop: () async => false,
             child: SafeArea(
               child: Scaffold(
-                backgroundColor: Colors.white,
                 appBar: AppBar(
                   automaticallyImplyLeading: false,
                   backgroundColor: primaryColor,

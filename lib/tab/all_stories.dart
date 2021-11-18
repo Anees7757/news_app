@@ -12,7 +12,6 @@ class _AllStoriesState extends State<AllStories> {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-      backgroundColor: Colors.grey[300],
       body: Category().stories("All News", 0),
     );
   }

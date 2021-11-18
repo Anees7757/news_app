@@ -15,7 +15,6 @@ class _SportsState extends State<Sports> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       body: Category().stories("Sports News", 4),
     );
   }
