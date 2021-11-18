@@ -112,9 +112,9 @@ class _MainState extends State<Main> {
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
-      // decoration: NavBarDecoration(
-      //   colorBehindNavBar: Colors.white,
-      // ),
+      decoration: NavBarDecoration(
+        colorBehindNavBar: Colors.white,
+      ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: ItemAnimationProperties(
