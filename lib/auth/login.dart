@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/pages/profile.dart';
 
@@ -78,7 +79,6 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
-        backgroundColor: primaryColor,
       ),
       body: Center(
         child: Container(
@@ -122,7 +122,6 @@ class _LoginState extends State<Login> {
                   ),
                   RaisedButton(
                     child: Text("Login"),
-                    color: primaryColor,
                     textColor: Colors.white,
                     onPressed: () {
                       if (emailInputController.text.isEmpty ||
@@ -134,6 +133,9 @@ class _LoginState extends State<Login> {
                         login();
                       }
                     },
+                  ),
+                  SizedBox(
+                    height: 50,
                   ),
                   Text("Don't have an account yet?"),
                   FlatButton(

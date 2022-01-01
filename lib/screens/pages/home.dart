@@ -2,9 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-import 'package:news_app/main.dart';
 import 'package:news_app/screens/search.dart';
 import 'package:news_app/services/data_service.dart';
 import 'package:news_app/tab/all_stories.dart';
@@ -91,7 +89,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: primaryColor,
+      statusBarColor: Theme.of(context).appBarTheme.backgroundColor,
     ));
     return Scaffold(
       body: DefaultTabController(
@@ -106,19 +104,9 @@ class _HomePageState extends State<HomePage> {
                       pinned: true,
                       title: Row(
                         children: [
-                          Text("News",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: primaryColor,
-                                backgroundColor: Colors.white
-                              )),
-                          Text(" App",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                              )),
+                          Text("News App"),
                         ],
                       ),
-                      backgroundColor: primaryColor,
                       actions: [
                         IconButton(
                           onPressed: () {

@@ -16,7 +16,6 @@ class _RegState extends State<Reg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
          body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

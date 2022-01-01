@@ -121,123 +121,127 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Register"),
-        backgroundColor: primaryColor,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _registerFormKey,
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  height: 70,
-                  width: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(50),
+      body: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (overscroll) {
+          overscroll.disallowGlow();
+          return true;
+        },
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _registerFormKey,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 5,
                   ),
-                  child: (imageFile != null)
-                      ? ClipRRect(
-                          child: Image.file(imageFile!, fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(50),
-                        )
-                      : Icon(CupertinoIcons.person, size: 35),
-                ),
-                TextButton(
-                  onPressed: () {
-                    getImage();
-                  },
-                  child: Text("Select Avatar"),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Full Name*'),
-                  controller: nameInputController,
-                  validator: (value) {
-                    if (value!.length < 4) {
-                      return "Please enter a valid first name.";
-                    }
-                  },
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      labelText: 'Phone*', hintText: "923XXXXXXXX"),
-                  controller: phoneController,
-                  validator: (value) {
-                    if (value!.length < 10) {
-                      return "Please enter a valid phone number";
-                    }
-                  },
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                      labelText: 'Email*', hintText: "abc@example.com"),
-                  controller: emailInputController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: emailValidator,
-                ),
-                TextFormField(
-                  obscureText: _passwordVisible,
-                  decoration: InputDecoration(
-                    labelText: 'Password*',
-                    hintText: "********",
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        color: Colors.grey[700],
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _passwordVisible = !_passwordVisible;
-                        });
-                      },
+                  Container(
+                    height: 70,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      color: isDarkMode! ? Colors.grey.shade800 : Colors.grey[300],
+                      borderRadius: BorderRadius.circular(50),
                     ),
+                    child: (imageFile != null)
+                        ? ClipRRect(
+                            child: Image.file(imageFile!, fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(50),
+                          )
+                        : Icon(CupertinoIcons.person, size: 35, color: isDarkMode! ? Colors.white : Colors.grey),
                   ),
-                  controller: pwdInputController,
-                  validator: pwdValidator,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                      labelText: 'Address', hintText: "Islamabad, Pakistan"),
-                  controller: addressController,
-                  minLines: 1,
-                  maxLines: 5,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                RaisedButton(
-                  child: Text("Register"),
-                  color: primaryColor,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    if (_registerFormKey.currentState!.validate()) {
-                      final snackBar = SnackBar(content: Text('Wait Please!'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      register();
-                    }
-                  },
-                ),
-                Text("Already have an account?"),
-                FlatButton(
-                  child: Text("Login here!"),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Login()),
-                    );
-                  },
-                )
-              ],
+                  TextButton(
+                    onPressed: () {
+                      getImage();
+                    },
+                    child: Text("Select Avatar"),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(labelText: 'Full Name*'),
+                    controller: nameInputController,
+                    validator: (value) {
+                      if (value!.length < 4) {
+                        return "Please enter a valid first name.";
+                      }
+                    },
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        labelText: 'Phone*', hintText: "923XXXXXXXX"),
+                    controller: phoneController,
+                    validator: (value) {
+                      if (value!.length < 10) {
+                        return "Please enter a valid phone number";
+                      }
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        labelText: 'Email*', hintText: "abc@example.com"),
+                    controller: emailInputController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: emailValidator,
+                  ),
+                  TextFormField(
+                    obscureText: _passwordVisible,
+                    decoration: InputDecoration(
+                      labelText: 'Password*',
+                      hintText: "********",
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey[700],
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
+                    ),
+                    controller: pwdInputController,
+                    validator: pwdValidator,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        labelText: 'Address', hintText: "Islamabad, Pakistan"),
+                    controller: addressController,
+                    minLines: 1,
+                    maxLines: 5,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  RaisedButton(
+                    child: Text("Register"),
+                    textColor: Colors.white,
+                    onPressed: () {
+                      if (_registerFormKey.currentState!.validate()) {
+                        final snackBar = SnackBar(content: Text('Wait Please!'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        register();
+                      }
+                    },
+                  ),
+                  Text("Already have an account?"),
+                  FlatButton(
+                    child: Text("Login here!"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Login()),
+                      );
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),

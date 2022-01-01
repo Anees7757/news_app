@@ -150,7 +150,6 @@ class _ProfileState extends State<Profile> {
               child: Scaffold(
                 appBar: AppBar(
                   automaticallyImplyLeading: false,
-                  backgroundColor: primaryColor,
                   elevation: 0.0,
                   actions: [
                     IconButton(
@@ -173,7 +172,7 @@ class _ProfileState extends State<Profile> {
                       Container(
                         height: 170,
                         width: double.infinity,
-                        color: primaryColor,
+                        color: Theme.of(context).appBarTheme.backgroundColor,
                         child: Column(
                           children: [
                             SizedBox(height: 10),
@@ -193,34 +192,35 @@ class _ProfileState extends State<Profile> {
                                     ],
                                   ),
                                   child: CircleAvatar(
-                                    backgroundColor: Colors.black,
+                                    backgroundColor: CupertinoColors.systemGrey,
                                     radius: 60,
-                                    child: ClipOval(
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
                                       child: Image.network(
-                                        data['url'] != null
-                                            ? "${data['url']}"
-                                            : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
-                                        fit: BoxFit.cover,
-                                        loadingBuilder: (BuildContext context,
-                                            Widget child,
-                                            ImageChunkEvent? loadingProgress) {
-                                          if (loadingProgress == null) {
-                                            return child;
-                                          }
-                                          return Center(
-                                            child: CircularProgressIndicator(
-                                              value: loadingProgress
-                                                          .expectedTotalBytes !=
-                                                      null
-                                                  ? loadingProgress
-                                                          .cumulativeBytesLoaded /
-                                                      loadingProgress
-                                                          .expectedTotalBytes!
-                                                  : null,
-                                            ),
-                                          );
-                                        },
-                                      ),
+                                          data['url'] != null
+                                              ? "${data['url']}"
+                                              : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+                                          fit: BoxFit.fitHeight,
+                                          loadingBuilder: (BuildContext context,
+                                              Widget child,
+                                              ImageChunkEvent? loadingProgress) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+                                            return Center(
+                                              child: CircularProgressIndicator(
+                                                value: loadingProgress
+                                                            .expectedTotalBytes !=
+                                                        null
+                                                    ? loadingProgress
+                                                            .cumulativeBytesLoaded /
+                                                        loadingProgress
+                                                            .expectedTotalBytes!
+                                                    : null,
+                                              ),
+                                            );
+                                          },
+                                        ),
                                     ),
                                   ),
                                 ),
@@ -229,7 +229,7 @@ class _ProfileState extends State<Profile> {
                                     getImage();
                                   },
                                   child: Container(
-                                    margin: EdgeInsets.only(top: 80, left: 85),
+                                    margin: EdgeInsets.only(top: 81, left: 85),
                                     height: 40,
                                     width: 40,
                                     decoration: BoxDecoration(
@@ -243,6 +243,11 @@ class _ProfileState extends State<Profile> {
                             ),
                           ],
                         ),
+                      ),
+                      Divider(
+                        height: 0,
+                        thickness: 1,
+                        color: CupertinoColors.systemGrey,
                       ),
                       SizedBox(height: 10),
                       LstTile(CupertinoIcons.person_fill, "Name",

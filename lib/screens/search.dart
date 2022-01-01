@@ -2,6 +2,7 @@
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:chips_choice/chips_choice.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/main.dart';
 import 'package:news_app/services/data_service.dart';
@@ -50,7 +51,6 @@ class _SearchState extends State<Search> {
             });
           },
         ),
-        backgroundColor: primaryColor,
         titleSpacing: 0,
         title: SizedBox(
           height: 35,
@@ -90,7 +90,7 @@ class _SearchState extends State<Search> {
                 borderRadius: BorderRadius.circular(50.0),
               ),
               filled: true,
-              fillColor: Colors.red[600],
+              fillColor: isDarkMode! ? CupertinoColors.systemGrey : Colors.red[600],
             ),
           ),
         ),
@@ -107,6 +107,7 @@ class _SearchState extends State<Search> {
             onChanged: (val) => setState(() {
               tag = val;
               search = options[tag];
+              FocusScope.of(context).unfocus();
             }),
             choiceItems: C2Choice.listFrom<int, String>(
               source: options,

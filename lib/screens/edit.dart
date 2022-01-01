@@ -82,7 +82,6 @@ class _EditState extends State<Edit> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Edit Profile"),
-        backgroundColor: primaryColor,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -107,7 +106,6 @@ class _EditState extends State<Edit> {
                 height: 30,
               ),
               RaisedButton(
-                color: primaryColor,
                 onPressed: () {
                   setState(() {
                     update();
@@ -120,7 +118,9 @@ class _EditState extends State<Edit> {
                     _addressController.clear();
                   });
                 },
-                child: Text("Update"),
+                child: Text("Update",style: TextStyle(
+                  color: Colors.white
+                )),
               ),
             ],
           ),

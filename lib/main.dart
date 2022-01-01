@@ -1,13 +1,18 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:chips_choice/chips_choice.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:news_app/route.dart';
 import 'package:news_app/screens/news_detail.dart';
 import 'package:news_app/screens/pages/favourite.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'screens/pages/home.dart';
+
+
+bool? isDarkMode;
 
 Color primaryColor = Colors.red.shade900;
 
@@ -32,13 +37,25 @@ class MyApp extends StatelessWidget {
           color: Colors.white
         ),
         shadowColor: Colors.grey,
-        bottomAppBarColor: Colors.white,
         scaffoldBackgroundColor: (titlelst.isEmpty) ? Colors.white : Colors.grey[200],
         cardColor: Colors.white,
+        indicatorColor: Colors.white,
+        buttonColor: primaryColor,
+        bottomAppBarColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          color: primaryColor,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            letterSpacing: 3,
+            fontWeight: FontWeight.bold,
+              fontSize: 19
+          ),
+        ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
+          unselectedItemColor: CupertinoColors.systemGrey,
+          selectedItemColor: primaryColor
         ),
-        indicatorColor: Colors.white
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -46,10 +63,26 @@ class MyApp extends StatelessWidget {
         iconTheme: IconThemeData(
             color: Colors.grey
         ),
-        shadowColor: Colors.white,
+        shadowColor: Colors.transparent,
         cardColor: Colors.grey.shade800,
         scaffoldBackgroundColor: Colors.black,
         indicatorColor: Colors.white,
+        buttonColor: Colors.grey.shade800,
+        bottomAppBarColor: Colors.black,
+        appBarTheme: AppBarTheme(
+          color: Colors.black,
+          titleTextStyle: TextStyle(
+              color: Colors.white,
+            letterSpacing: 3,
+            fontWeight: FontWeight.bold,
+            fontSize: 19
+          ),
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: Colors.black,
+            unselectedItemColor: CupertinoColors.systemGrey,
+            selectedItemColor: Colors.white
+        ),
       ),
       themeMode: ThemeMode.system,
       home: Main(),
@@ -65,6 +98,14 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+
+  @override
+  void initState() {
+      var brightness = SchedulerBinding.instance!.window.platformBrightness;
+      isDarkMode = brightness == Brightness.dark;
+    super.initState();
+  }
+
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
@@ -81,20 +122,20 @@ class _MainState extends State<Main> {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home, size: 30),
         title: "Home",
-        activeColorPrimary: primaryColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+        inactiveColorPrimary: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor!,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.favorite, size: 30),
         title: "Favourite",
-        activeColorPrimary: primaryColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+        inactiveColorPrimary: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor!,
       ),
       PersistentBottomNavBarItem(
         title: "Profile",
         icon: Icon(Icons.account_circle, size: 30),
-        activeColorPrimary: primaryColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+        inactiveColorPrimary: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor!,
       ),
     ];
   }
@@ -107,14 +148,14 @@ class _MainState extends State<Main> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.transparent,
       handleAndroidBackButtonPress: true,
+      backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
-      decoration: NavBarDecoration(
-        colorBehindNavBar: Colors.white,
-      ),
+      // decoration: NavBarDecoration(
+      //   colorBehindNavBar: isDarkMode! ? Colors.black : Colors.white,
+      // ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: ItemAnimationProperties(
