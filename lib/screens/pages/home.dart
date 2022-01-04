@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Theme.of(context).appBarTheme.backgroundColor,
+      statusBarColor: Colors.transparent,
     ));
     return Scaffold(
       body: DefaultTabController(

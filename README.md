@@ -1,6 +1,6 @@
 # news_app
 
-A new Flutter project.
+A News Application made by Muhammad Anees
 
 ## Getting Started
 
